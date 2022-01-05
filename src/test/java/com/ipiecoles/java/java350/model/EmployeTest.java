@@ -38,16 +38,15 @@ public class EmployeTest {
 
     //cas 3 : DateNow = 05/01/2022 | dateEmbauche = 05/01/2021 | nbAnneeAnciennete : 1
     @Test
-    public void testGetNombreAnneeAncienneteWhenDateEmbauchePasse(){
-        //Given = Initialisation des donnée d'entrée
+    public void testGetNbAnneeAncienneteWithDateEmbauchePasse(){
+        //Given
         LocalDate dateEmbauche = LocalDate.now().minusYears(2);
-        Employe theEmploye = new Employe("Doe","John","T12345", dateEmbauche, Entreprise.SALAIRE_BASE, 4 , 1d);
 
+        Employe employe = new Employe("Doe", "John", "T12345", dateEmbauche, Entreprise.SALAIRE_BASE, 4, 1d);
         //When
-        Integer nbAnnesAnciennete = theEmploye.getNombreAnneeAnciennete();
-
-        //Then = Vérification de ce que fait la méthode
-        Assertions.assertThat(nbAnnesAnciennete).isZero();
+        Integer nbAnneeAnciennete = employe.getNombreAnneeAnciennete();
+        //Then
+        Assertions.assertThat(nbAnneeAnciennete).isEqualTo(2);
     }
 
     //cas 4 : DateNow = now | dateEmbauche = null | nbAnneeAnciennete : 0
