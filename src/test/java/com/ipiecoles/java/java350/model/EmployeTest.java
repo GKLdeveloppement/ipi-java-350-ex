@@ -2,6 +2,8 @@ package com.ipiecoles.java.java350.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
 
@@ -60,5 +62,21 @@ public class EmployeTest {
         Integer nbAnneeAnciennete = employe.getNombreAnneeAnciennete();
         //Then
         Assertions.assertThat(nbAnneeAnciennete).isZero();
+    }
+
+    //cas test paramétré
+    @ParameterizedTest(name = "Employé de matricule {0}, de performance {1}, avec {2} années d'ancienneté, taux d'activité {3} : prime {4}")
+    @CsvSource({
+            "'T12345',1,0,1.0,1000.0"
+    })
+    public void testGetPrimeAnnuelle(String matricule, Integer performance, Integer nombreAnneeAnciennete, Double tempsPartiel, Double primeAttendue){
+        //Given
+        Employe employe = new Employe("Doe", "John", matricule, LocalDate.now().minusYears(nombreAnneeAnciennete), Entreprise.SALAIRE_BASE, performance, tempsPartiel);
+        //When
+        Double d = employe.getPrimeAnnuelle();
+        //Then
+        //Prime de base + prime de performance + prime d'ancienneté au pro rata de son activité
+        //1000 + 0 + 0 => 1000
+        Assertions.assertThat(d).isEqualTo(primeAttendue);
     }
 }
