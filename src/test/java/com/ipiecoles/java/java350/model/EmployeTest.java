@@ -67,7 +67,9 @@ public class EmployeTest {
     //cas test paramétré
     @ParameterizedTest(name = "Employé de matricule {0}, de performance {1}, avec {2} années d'ancienneté, taux d'activité {3} : prime {4}")
     @CsvSource({
-            "'T12345',1,0,1.0,1000.0"
+            "'T12345',1,0,1.0,1000.0",
+            "'M12345',1,0,1.0,1700.0",
+            "'T12345',2,0,1.0,2300.0",
     })
     public void testGetPrimeAnnuelle(String matricule, Integer performance, Integer nombreAnneeAnciennete, Double tempsPartiel, Double primeAttendue){
         //Given
@@ -76,7 +78,6 @@ public class EmployeTest {
         Double d = employe.getPrimeAnnuelle();
         //Then
         //Prime de base + prime de performance + prime d'ancienneté au pro rata de son activité
-        //1000 + 0 + 0 => 1000
         Assertions.assertThat(d).isEqualTo(primeAttendue);
     }
 }
