@@ -42,6 +42,7 @@ public class EmployeAcceptanceTest {
         Assertions.assertThat(employe.getNom()).isEqualTo(nom);
         Assertions.assertThat(employe.getSalaire()).isEqualTo(salaire);
         Assertions.assertThat(employe.getPerformance()).isEqualTo(Entreprise.PERFORMANCE_BASE);
+        System.out.println("test");
         //Taux d'activité
     }
 

@@ -82,4 +82,5 @@ public class EmployeTest {
         //Prime de base + prime de performance + prime d'ancienneté au pro rata de son activité
         Assertions.assertThat(d).isEqualTo(primeAttendue);
     }
+    
 }
