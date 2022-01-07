@@ -87,7 +87,7 @@ public class EmployeTest {
     @ParameterizedTest(name = "Pour {0}, en temps partiel de {1}, on a {2} nbRTT.")
     @CsvSource({
             "2019, 1.0, 8",
-            "2021, 1.0, 10",
+            "2021, 0.5, 5",
             "2022, 1.0, 11",
             "2032, 1.0, 10"
     })
