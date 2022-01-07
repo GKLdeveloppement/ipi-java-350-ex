@@ -82,5 +82,23 @@ public class EmployeTest {
         //Prime de base + prime de performance + prime d'ancienneté au pro rata de son activité
         Assertions.assertThat(d).isEqualTo(primeAttendue);
     }
-    
+
+    //TP : test NbRtt
+    @ParameterizedTest(name = "Pour {0}, en temps partiel de {1}, on a {2} nbRTT.")
+    @CsvSource({
+            "2019, 1.0, 8",
+            "2021, 1.0, 10",
+            "2022, 1.0, 11",
+            "2032, 1.0, 10"
+    })
+    void testGetNbRtt(Integer annee, Double tpPartiel, Integer nbRttFinal) {
+        // Given
+        Employe employe = new Employe();
+        LocalDate date = LocalDate.of(annee, 1, 1);
+        employe.setTempsPartiel(tpPartiel);
+        // When
+        Integer NbRtt = employe.getNbRtt(date);
+        // Then
+        Assertions.assertThat(NbRtt).isEqualTo(nbRttFinal);
+    }
 }
