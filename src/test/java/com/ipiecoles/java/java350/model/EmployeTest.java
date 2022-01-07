@@ -96,7 +96,7 @@ public class EmployeTest {
         Employe employe = new Employe();
         LocalDate date = LocalDate.of(annee, 1, 1);
         employe.setTempsPartiel(tpPartiel);
-        // When 
+        // When
         Integer NbRtt = employe.getNbRtt(date);
         // Then
         Assertions.assertThat(NbRtt).isEqualTo(nbRttFinal);
