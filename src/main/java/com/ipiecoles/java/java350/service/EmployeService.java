@@ -43,14 +43,14 @@ public class EmployeService {
             LOGGER.warn("Aucun matricule trouvé, utilisation du matricule initial");
             lastMatricule = Entreprise.MATRICULE_INITIAL;
         }
-        LOGGER.trace("Last matricule : " + lastMatricule);//debug
+        LOGGER.trace("Last matricule :{}", lastMatricule);//debug
         //... et incrémentation
         Integer numeroMatricule = Integer.parseInt(lastMatricule) + 1;
         if (numeroMatricule >= 100000) {
             LOGGER.error("Impossible d'enregistrer un nouvel employé car on arrive au bout des matricules possibles");
             throw new EmployeException("Limite des 100000 matricules atteinte !");
         } else if (numeroMatricule >= 90000) {
-            LOGGER.warn("Limite des 100000 matricules proches, matricule calculé : " + numeroMatricule);
+            LOGGER.warn("Limite des 100000 matricules proches, matricule calculé : {}", numeroMatricule);
         }
         //On complète le numéro avec des 0 à gauche
         String matricule = "00000" + numeroMatricule;
@@ -58,7 +58,7 @@ public class EmployeService {
         LOGGER.debug("Matricule calculé {}", matricule);
         //On vérifie l'existence d'un employé avec ce matricule
         if (employeRepository.findByMatricule(matricule) != null) {
-            LOGGER.error("L'employé de matricule " + matricule + " existe déjà en BDD");
+            LOGGER.error("L'employé de matricule {} existe déjà en BDD", matricule);
             throw new EntityExistsException("L'employé de matricule " + matricule + " existe déjà en BDD");
         }
 
@@ -73,7 +73,7 @@ public class EmployeService {
         //Création et sauvegarde en BDD de l'employé.
         Employe employe = new Employe(nom, prenom, matricule, LocalDate.now(), salaire, Entreprise.PERFORMANCE_BASE, tempsPartiel);
         employe = employeRepository.save(employe);
-        LOGGER.info("Employé enregistré : " + employe);
+        LOGGER.info("Employé enregistré : {}", employe);
 
     }
 
