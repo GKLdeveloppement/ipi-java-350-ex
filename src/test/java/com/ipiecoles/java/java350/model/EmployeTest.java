@@ -82,5 +82,82 @@ public class EmployeTest {
         //Prime de base + prime de performance + prime d'ancienneté au pro rata de son activité
         Assertions.assertThat(d).isEqualTo(primeAttendue);
     }
-    
+
+    //TP : test NbRtt
+    @ParameterizedTest(name = "Pour {0}, en temps partiel de {1}, on a {2} nbRTT.")
+    @CsvSource({
+            "2019, 1.0, 8",
+            "2021, 0.5, 5",
+            "2022, 1.0, 11",
+            "2032, 1.0, 10"
+    })
+    void testGetNbRtt(Integer annee, Double tpPartiel, Integer nbRttFinal) {
+        // Given
+        Employe employe = new Employe();
+        LocalDate date = LocalDate.of(annee, 1, 1);
+        employe.setTempsPartiel(tpPartiel);
+        // When
+        Integer NbRtt = employe.getNbRtt(date);
+        // Then
+        Assertions.assertThat(NbRtt).isEqualTo(nbRttFinal);
+    }
+
+
+    //TP : test augmenterSalaire()
+
+    @Test
+    public void testAugmenterSalaire() {
+        //Given
+        Employe employe = new Employe("Zlatan", "Ibra", "T25252", LocalDate.now(), 1500.00d, 1, 1.0);
+
+        //When -- on augmente son salaire de 5%
+        employe.augmenterSalaire(5.0);
+        System.out.println(employe.getSalaire());
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isEqualTo(1575.00d);
+    }
+
+
+    @Test
+    public void testAugmenterSalaireWithSalaireEqual0() {
+        //Given
+        Employe employe = new Employe("Doe", "John", "T25253", LocalDate.now(), 0.00, 1, 1.0);
+
+        //When -- on augmente son salaire de 5%
+        employe.augmenterSalaire(5.0);
+        System.out.println(employe.getSalaire());
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isEqualTo(0.00);
+    }
+
+
+    @Test
+    public void testAugmenterSalaireWithSalaireNegative() {
+        //Given
+        Employe employe = new Employe("Doe", "John", "T25253", LocalDate.now(), -500.00, 1, 1.0);
+
+        //When -- on augmente son salaire de 5%
+        employe.augmenterSalaire(5.0);
+        System.out.println(employe.getSalaire());
+
+        //Then -- le salaire de l'employé ne bouge pas exemple si il est endetté de jours de congés aupres de l'employeur
+        Assertions.assertThat(employe.getSalaire()).isEqualTo(-500.00);
+    }
+
+
+    @Test
+    public void testAugmenterSalaireWithPourcentageNegative() {
+        //Given
+        Employe employe = new Employe("Doe", "John", "T25253", LocalDate.now(), 1500.00, 1, 1.0);
+
+        //When -- on augmente son salaire de 5%
+        employe.augmenterSalaire(-5.0);
+        System.out.println(employe.getSalaire());
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isEqualTo(1500d);
+
+    }
 }

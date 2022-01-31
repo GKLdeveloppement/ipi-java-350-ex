@@ -1,5 +1,4 @@
 package com.ipiecoles.java.java350.service;
-
 import com.ipiecoles.java.java350.exception.EmployeException;
 import com.ipiecoles.java.java350.model.Employe;
 import com.ipiecoles.java.java350.model.NiveauEtude;
@@ -18,13 +17,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.persistence.EntityExistsException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeServiceTest {
+class EmployeServiceTest {
 
     @InjectMocks
     EmployeService employeService;
@@ -38,7 +35,7 @@ public class EmployeServiceTest {
     }
 
     @Test
-    public void testEmbaucheEmployeTechnicienPleinTempsBts() throws EmployeException {
+    void testEmbaucheEmployeTechnicienPleinTempsBts() throws EmployeException {
         //Given
         String nom = "Doe";
         String prenom = "John";
@@ -65,7 +62,7 @@ public class EmployeServiceTest {
     }
 
     @Test
-    public void testEmbaucheEmployeManagerMiTempsMaster() throws EmployeException {
+    void testEmbaucheEmployeManagerMiTempsMaster() throws EmployeException {
         //Given
         String nom = "Doe";
         String prenom = "John";
@@ -92,7 +89,7 @@ public class EmployeServiceTest {
     }
 
     @Test
-    public void testEmbaucheEmployeManagerMiTempsMasterNoLastMatricule() throws EmployeException {
+    void testEmbaucheEmployeManagerMiTempsMasterNoLastMatricule() throws EmployeException {
         //Given
         String nom = "Doe";
         String prenom = "John";
@@ -112,7 +109,7 @@ public class EmployeServiceTest {
     }
 
     @Test
-    public void testEmbaucheEmployeManagerMiTempsMasterExistingEmploye(){
+    void testEmbaucheEmployeManagerMiTempsMasterExistingEmploye(){
         //Given
         String nom = "Doe";
         String prenom = "John";
@@ -128,7 +125,7 @@ public class EmployeServiceTest {
     }
 
     @Test
-    public void testEmbaucheEmployeManagerMiTempsMaster99999(){
+    void testEmbaucheEmployeManagerMiTempsMaster99999(){
         //Given
         String nom = "Doe";
         String prenom = "John";

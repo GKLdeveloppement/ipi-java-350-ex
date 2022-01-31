@@ -1,0 +1,5 @@
+2022-01-07 15:51:48.531 ERROR c.i.j.java350.service.EmployeService.embaucheEmploye - L'employé de matricule M00001 existe déjà en BDD
+2022-01-07 15:53:35.268 ERROR c.i.j.java350.service.EmployeService.embaucheEmploye - Impossible d'enregistrer un nouvel employé car on arrive au bout des matricules possibles
+2022-01-07 15:53:35.284 ERROR c.i.j.java350.service.EmployeService.embaucheEmploye - L'employé de matricule M00001 existe déjà en BDD
+2022-01-07 15:58:00.721 ERROR c.i.j.java350.service.EmployeService.embaucheEmploye - Impossible d'enregistrer un nouvel employé car on arrive au bout des matricules possibles
+2022-01-07 15:58:00.737 ERROR c.i.j.java350.service.EmployeService.embaucheEmploye - L'employé de matricule M00001 existe déjà en BDD

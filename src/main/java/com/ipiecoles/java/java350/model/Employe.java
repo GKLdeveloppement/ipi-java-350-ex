@@ -63,18 +63,28 @@ public class Employe {
     }
 
     public Integer getNbRtt(LocalDate d){
-        int i1 = d.isLeapYear() ? 365 : 366;int var = 104;
-        switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
-        case THURSDAY: if(d.isLeapYear()) var =  var + 1; break;
-        case FRIDAY:
-        if(d.isLeapYear()) var =  var + 2;
-        else var =  var + 1;
-case SATURDAY:var = var + 1;
-                    break;
+        int nbJour1An = d.isLeapYear() ? 365 : 366;
+        int nbJourWE1An = 104;
+        switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()) {
+            case THURSDAY:
+                if(d.isLeapYear())
+                    nbJourWE1An ++;
+                break;
+            case FRIDAY:
+                if(d.isLeapYear())
+                    nbJourWE1An += 2;
+                else
+                    nbJourWE1An ++;
+            case SATURDAY:
+                nbJourWE1An ++;
+                break;
+            default:
+                nbJourWE1An ++;
+                break;
         }
-        int monInt = (int) Entreprise.joursFeries(d).stream().filter(localDate ->
+        int nbJourFerie = (int) Entreprise.joursFeries(d).stream().filter(localDate ->
                 localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
-        return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - var - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
+        return (int) Math.ceil((nbJour1An - Entreprise.NB_JOURS_MAX_FORFAIT - nbJourWE1An - Entreprise.NB_CONGES_BASE - nbJourFerie) * tempsPartiel);
     }
 
     /**
@@ -113,7 +123,18 @@ case SATURDAY:var = var + 1;
     }
 
     //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+
+    /**
+     *
+     * @param pourcentage
+     *
+     * Que dans le cas où les deux paramètres sont strictements positifs
+     */
+    public void augmenterSalaire(double pourcentage){
+        if (pourcentage > 0 && this.salaire > 0) {
+            this.salaire = this.salaire * (1+(pourcentage/100));
+        }
+    }
 
     public Long getId() {
         return id;
