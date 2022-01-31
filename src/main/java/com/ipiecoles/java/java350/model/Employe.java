@@ -123,7 +123,18 @@ public class Employe {
     }
 
     //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+
+    /**
+     *
+     * @param pourcentage
+     *
+     * Que dans le cas où les deux paramètres sont strictements positifs
+     */
+    public void augmenterSalaire(double pourcentage){
+        if (pourcentage > 0 && this.salaire > 0) {
+            this.salaire = this.salaire * (1+(pourcentage/100));
+        }
+    }
 
     public Long getId() {
         return id;

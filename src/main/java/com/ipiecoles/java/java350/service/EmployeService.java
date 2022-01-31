@@ -87,7 +87,7 @@ public class EmployeService {
      * 3 : Si le chiffre d'affaire est entre -5% et +5% de l'objectif fixé, la performance reste la même.
      * 4 : Si le chiffre d'affaire est supérieur entre 5 et 20%, il gagne 1 de performance
      * 5 : Si le chiffre d'affaire est supérieur de plus de 20%, il gagne 4 de performance
-     * <p>
+     * <p>augmen
      * Si la performance ainsi calculée est supérieure à la moyenne des performances des commerciaux, il reçoit + 1 de performance.
      *
      * @param matricule  le matricule du commercial
